@@ -14,7 +14,8 @@ class BoardContoller extends Controller
      */
     public function index()
     {
-        return view('boards.index');
+        $boards = Board::all();
+        return view('boards.index') ->with('lists', $boards);
     }
 
     /**
@@ -35,7 +36,15 @@ class BoardContoller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request -> validate([
+            'subject' => 'required',
+            'contents' => 'required',
+        ]);
+
+        //필드명이랑 name값이 같을 경우 아래와 같이 사용가능
+        Board::create($request -> all());
+
+        return redirect() -> route('index');        
     }
 
     /**
@@ -46,7 +55,10 @@ class BoardContoller extends Controller
      */
     public function show(Board $board)
     {
-        //
+        //Board 모델을 통해 일치하는 아이디값 데이터를 하나만 가져옴
+        $board = Board::where('id', $board->id) -> first();
+
+        return view('boards.show') ->with('board', $board);
     }
 
     /**
@@ -57,7 +69,10 @@ class BoardContoller extends Controller
      */
     public function edit(Board $board)
     {
-        //
+        //Board 모델을 통해 일치하는 아이디값 데이터를 하나만 가져옴
+        $board = Board::where('id', $board->id) -> first();
+
+        return view('boards.edit') ->with('board', $board);
     }
 
     /**
@@ -69,7 +84,15 @@ class BoardContoller extends Controller
      */
     public function update(Request $request, Board $board)
     {
-        //
+        $request -> validate([
+            'subject' => 'required',
+            'contents' => 'required',
+        ]);
+
+        
+        $board->update($request -> all());
+
+        return redirect() -> route('boards.index');        
     }
 
     /**
@@ -81,5 +104,7 @@ class BoardContoller extends Controller
     public function destroy(Board $board)
     {
         //
+        $board->delete();
+        return redirect() -> route('boards.index');     
     }
 }

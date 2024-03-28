@@ -17,12 +17,17 @@ use App\Http\Controllers\BoardContoller;
 */
 
 
-Route::get('/', [PageController::class, 'index']);
+Route::get('/', [PageController::class, 'index'])->name('home');
 Route::get('/about', [PageController::class, 'about']);
 Route::get('/contact', [PageController::class, 'contact']);
 
-Route::get('/boards', [BoardContoller::class, 'index']);
+
+Route::resource('boards',BoardContoller::class);
+// Route::get('/boards', [BoardContoller::class, 'index'])->name('boards.index');
+// Route::get('/boards/{id}', [BoardContoller::class, 'show'])->name('boards.show');
+// Route::post('/boards', [BoardContoller::class, 'store'])->name('boards.store');
+
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
