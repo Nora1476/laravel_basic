@@ -44,7 +44,7 @@ class BoardContoller extends Controller
         //필드명이랑 name값이 같을 경우 아래와 같이 사용가능
         Board::create($request -> all());
 
-        return redirect() -> route('index');        
+        return redirect() -> route('boards.index');        
     }
 
     /**

@@ -8,7 +8,9 @@
 
             <a href="{{ route('boards.index')}}">목록</a>
 
-            <form action="{{ route('boards.update', $board->id) }}" >
+            <form action="{{ route('boards.update', $board->id) }}" method="post">
+              @csrf
+              @method("PUT")
               <table>
                 <tr>
                   <th>제목</th>
@@ -20,7 +22,7 @@
                 <tr>
                   <th>내용</th>
                   <td>
-                    <textarea name="contents">{{ $board ->contents }}</textarea>
+                    <textarea name="contents">{{ $board->contents }}</textarea>
                   </td>
                 </tr>
 

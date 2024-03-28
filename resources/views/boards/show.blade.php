@@ -19,8 +19,6 @@
                 <td>{{$board -> contents}}</td>
               </tr>
             </table>
-
-
           </div>
         </div>
       </div>
