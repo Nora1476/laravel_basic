@@ -8,17 +8,17 @@ use Illuminate\Http\Request;
 class PageController extends Controller
 {
 
-    public function index()
-    {
-        return view('home');
-    }
-    public function about()
-    {
-        return view('about');
-    }
-    public function contact()
-    {
-        return view('contact');
-    }
+	public function main()
+	{
+		return view('welcome');
+	}
+	public function about()
+	{
+		return view('about');
+	}
+	public function contact()
+	{
+		return view('contact');
+	}
 
 }
